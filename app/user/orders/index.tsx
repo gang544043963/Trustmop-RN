@@ -7,8 +7,8 @@ import { Task } from '@/data/types';
 import { useAuthStore } from '@/stores/auth.store';
 import { useOrderStore } from '@/stores/order.store';
 import { Ionicons } from '@expo/vector-icons';
-import { useRouter } from 'expo-router';
-import React, { useCallback, useEffect, useState } from 'react';
+import { useFocusEffect, useRouter } from 'expo-router';
+import React, { useCallback, useState } from 'react';
 import {
   Alert,
   FlatList,
@@ -104,7 +104,7 @@ export default function UserOrdersScreen() {
     setRefreshing(false);
   }, [session?.userId, fetchOrders]);
 
-  useEffect(() => { load(); }, [load]);
+  useFocusEffect(useCallback(() => { load(); }, [load]));
 
   const onRefresh = () => { setRefreshing(true); load(); };
 

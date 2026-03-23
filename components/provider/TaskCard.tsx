@@ -1,4 +1,4 @@
-import { BorderRadius, Colors, FontSize, Spacing } from '@/constants/theme';
+import { BorderRadius, Colors, FontSize, Spacing, ProviderTheme } from '@/constants/theme';
 import { Task } from '@/data/types';
 import React from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
     borderRadius: BorderRadius.full,
   },
   badgeRegular: { backgroundColor: Colors.successLight },
-  badgeDeep: { backgroundColor: Colors.primaryLight },
+  badgeDeep: { backgroundColor: ProviderTheme.primaryLight },
   badgeText: { fontSize: FontSize.xs, fontWeight: '600', color: Colors.gray800 },
   postedTime: { fontSize: FontSize.xs, color: Colors.gray400 },
   row: {
@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
   budget: {
     fontSize: FontSize.md,
     fontWeight: '700',
-    color: Colors.primary,
+    color: ProviderTheme.primary,
     marginTop: Spacing.xs,
   },
 });

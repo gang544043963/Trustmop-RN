@@ -1,7 +1,7 @@
 import MockPayButton from '@/components/shared/MockPayButton';
 import OrderStatusBadge from '@/components/shared/OrderStatusBadge';
 import ReviewForm from '@/components/user/ReviewForm';
-import { Colors, FontSize, Spacing } from '@/constants/theme';
+import { Colors, FontSize, Spacing, UserTheme } from '@/constants/theme';
 import { listReviews } from '@/data/services/review.service';
 import { Review } from '@/data/types';
 import { useAuthStore } from '@/stores/auth.store';
@@ -68,7 +68,7 @@ export default function UserOrderDetailScreen() {
   if (!order) {
     return (
       <View style={styles.center}>
-        <ActivityIndicator color={Colors.primary} />
+        <ActivityIndicator color={UserTheme.primary} />
       </View>
     );
   }
@@ -196,7 +196,7 @@ const styles = StyleSheet.create({
   },
   fieldLabel: { fontSize: FontSize.sm, color: Colors.gray500 },
   fieldValue: { fontSize: FontSize.sm, color: Colors.gray800, fontWeight: '500', flex: 1, textAlign: 'right' },
-  price: { color: Colors.primary, fontWeight: '700' },
+  price: { color: UserTheme.primary, fontWeight: '700' },
   sectionTitle: {
     fontSize: FontSize.lg,
     fontWeight: '700',
@@ -208,7 +208,7 @@ const styles = StyleSheet.create({
     width: 10,
     height: 10,
     borderRadius: 5,
-    backgroundColor: Colors.primary,
+    backgroundColor: UserTheme.primary,
     marginTop: 4,
     marginRight: Spacing.sm,
   },

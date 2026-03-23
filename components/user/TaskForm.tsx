@@ -1,4 +1,4 @@
-import { BorderRadius, Colors, FontSize, Spacing } from '@/constants/theme';
+import { BorderRadius, Colors, FontSize, Spacing, UserTheme } from '@/constants/theme';
 import { ServiceType } from '@/data/types';
 import React, { useState } from 'react';
 import {
@@ -199,7 +199,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: Colors.white,
   },
-  typeBtnActive: { backgroundColor: Colors.primary, borderColor: Colors.primary },
+  typeBtnActive: { backgroundColor: UserTheme.primary, borderColor: UserTheme.primary },
   typeBtnText: { fontSize: FontSize.sm, color: Colors.gray600, fontWeight: '600' },
   typeBtnTextActive: { color: Colors.white },
   input: {
@@ -219,7 +219,7 @@ const styles = StyleSheet.create({
   row: { flexDirection: 'row', gap: Spacing.sm },
   halfField: { flex: 1 },
   submitBtn: {
-    backgroundColor: Colors.primary,
+    backgroundColor: UserTheme.primary,
     borderRadius: BorderRadius.md,
     paddingVertical: Spacing.md,
     alignItems: 'center',

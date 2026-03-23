@@ -30,8 +30,12 @@ export const useAuthStore = create<AuthState>()(
         set({ isLoading: true });
         try {
           const session = await authService.verifyOtp(phone, otp);
-          const sessionWithRole: AuthSession = { ...session, activeIdentity: role };
-          set({ session: sessionWithRole });
+          // Use the requested role if that account exists, otherwise use what's available
+          const activeIdentity: IdentityType =
+            role === 'provider' && session.providerId ? 'provider' :
+            role === 'user' && session.userId ? 'user' :
+            session.activeIdentity;
+          set({ session: { ...session, activeIdentity } });
         } finally {
           set({ isLoading: false });
         }

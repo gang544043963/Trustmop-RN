@@ -1,4 +1,4 @@
-import { Colors, FontSize, Spacing } from '@/constants/theme';
+import { Colors, FontSize, Spacing, UserTheme } from '@/constants/theme';
 import { getProvider } from '@/data/services/provider.service';
 import { listReviews } from '@/data/services/review.service';
 import { ServiceWithProvider, listServices } from '@/data/services/service.service';
@@ -58,7 +58,7 @@ export default function ProviderDetailScreen() {
   if (loading) {
     return (
       <View style={styles.center}>
-        <ActivityIndicator color={Colors.primary} />
+        <ActivityIndicator color={UserTheme.primary} />
       </View>
     );
   }
@@ -145,7 +145,7 @@ const styles = StyleSheet.create({
     width: 72,
     height: 72,
     borderRadius: 36,
-    backgroundColor: Colors.primary,
+    backgroundColor: UserTheme.primary,
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: Spacing.sm,
@@ -179,7 +179,7 @@ const styles = StyleSheet.create({
   },
   serviceRow: { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 4 },
   serviceType: { fontSize: FontSize.md, fontWeight: '600', color: Colors.gray800 },
-  servicePrice: { fontSize: FontSize.md, fontWeight: '700', color: Colors.primary },
+  servicePrice: { fontSize: FontSize.md, fontWeight: '700', color: UserTheme.primary },
   serviceDesc: { fontSize: FontSize.sm, color: Colors.gray500, marginBottom: 4 },
   coverageAreas: { fontSize: FontSize.sm, color: Colors.gray400 },
   reviewCard: {

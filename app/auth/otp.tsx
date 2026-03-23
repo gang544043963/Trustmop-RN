@@ -12,8 +12,6 @@ import {
 } from 'react-native';
 
 import { BorderRadius, Colors, FontSize, Spacing } from '@/constants/theme';
-import { getProviderByPhone } from '@/data/services/provider.service';
-import { getUserByPhone } from '@/data/services/user.service';
 import { useAuthStore } from '@/stores/auth.store';
 
 export default function OtpScreen() {
@@ -23,7 +21,7 @@ export default function OtpScreen() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
-  const { login, setSession, session } = useAuthStore();
+  const { login } = useAuthStore();
 
   const handleSubmit = async () => {
     setError('');
@@ -36,26 +34,17 @@ export default function OtpScreen() {
     try {
       await login(fullPhone, code, role as 'user' | 'provider');
 
+      const current = useAuthStore.getState().session;
       if (role === 'user') {
-        const user = await getUserByPhone(fullPhone);
-        if (!user) {
+        if (!current?.userId) {
           router.replace(`/auth/profile-setup?role=user&phone=${phone}`);
         } else {
-          const current = useAuthStore.getState().session;
-          if (current) {
-            setSession({ ...current, userId: user.id });
-          }
           router.replace('/user/home' as any);
         }
       } else {
-        const provider = await getProviderByPhone(fullPhone);
-        if (!provider) {
+        if (!current?.providerId) {
           router.replace(`/auth/profile-setup?role=provider&phone=${phone}`);
         } else {
-          const current = useAuthStore.getState().session;
-          if (current) {
-            setSession({ ...current, providerId: provider.id });
-          }
           router.replace('/provider/task-hall' as any);
         }
       }

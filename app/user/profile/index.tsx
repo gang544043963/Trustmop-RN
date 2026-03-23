@@ -1,4 +1,4 @@
-import { BorderRadius, Colors, FontSize, Spacing } from '@/constants/theme';
+import { BorderRadius, Colors, FontSize, Spacing, UserTheme } from '@/constants/theme';
 import { getProviderByPhone } from '@/data/services/provider.service';
 import { getUserByPhone } from '@/data/services/user.service';
 import { useAuthStore } from '@/stores/auth.store';
@@ -84,7 +84,7 @@ export default function UserProfileScreen() {
   if (!user) {
     return (
       <View style={styles.center}>
-        <ActivityIndicator color={Colors.primary} />
+        <ActivityIndicator color={UserTheme.primary} />
       </View>
     );
   }
@@ -179,7 +179,7 @@ const styles = StyleSheet.create({
     width: 80,
     height: 80,
     borderRadius: 40,
-    backgroundColor: Colors.primary,
+    backgroundColor: UserTheme.primary,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -220,8 +220,8 @@ const styles = StyleSheet.create({
     marginBottom: Spacing.sm,
   },
   btnText: { fontSize: FontSize.md, fontWeight: '600', color: Colors.white },
-  editBtn: { backgroundColor: Colors.primary },
-  saveBtn: { flex: 1, backgroundColor: Colors.primary },
+  editBtn: { backgroundColor: UserTheme.primary },
+  saveBtn: { flex: 1, backgroundColor: UserTheme.primary },
   cancelBtn: { flex: 1, backgroundColor: Colors.gray200 },
   cancelBtnText: { color: Colors.gray700 },
   switchBtn: { backgroundColor: Colors.gray700 },

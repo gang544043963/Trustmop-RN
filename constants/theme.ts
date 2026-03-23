@@ -4,9 +4,22 @@
 
 import { Platform } from 'react-native';
 
+// ─── Role-specific themes ───────────────────────────────────────
+export const UserTheme = {
+  primary: '#16A34A',       // Green
+  primaryLight: '#DCFCE7',
+  primaryDark: '#15803D',
+};
+
+export const ProviderTheme = {
+  primary: '#EA580C',       // Orange
+  primaryLight: '#FFEDD5',
+  primaryDark: '#C2410C',
+};
+
 // Brand colors
 export const Colors = {
-  primary: '#2563EB',       // Primary blue
+  primary: '#2563EB',       // Primary blue (shared / auth screens)
   primaryLight: '#DBEAFE',  // Light blue tint
   primaryDark: '#1D4ED8',   // Dark blue
 

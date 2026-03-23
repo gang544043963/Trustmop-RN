@@ -1,6 +1,6 @@
 import EmptyState from '@/components/shared/EmptyState';
 import ServiceCard from '@/components/user/ServiceCard';
-import { Colors, FontSize, Spacing } from '@/constants/theme';
+import { Colors, FontSize, Spacing, UserTheme } from '@/constants/theme';
 import { ServiceWithProvider, listServices } from '@/data/services/service.service';
 import { ServiceType } from '@/data/types';
 import { useRouter } from 'expo-router';
@@ -56,7 +56,7 @@ export default function HomeScreen() {
   if (loading) {
     return (
       <View style={styles.center}>
-        <ActivityIndicator color={Colors.primary} />
+        <ActivityIndicator color={UserTheme.primary} />
       </View>
     );
   }
@@ -134,8 +134,8 @@ const styles = StyleSheet.create({
     borderColor: Colors.gray200,
   },
   chipActive: {
-    backgroundColor: Colors.primary,
-    borderColor: Colors.primary,
+    backgroundColor: UserTheme.primary,
+    borderColor: UserTheme.primary,
   },
   chipText: {
     fontSize: FontSize.sm,

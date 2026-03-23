@@ -1,4 +1,4 @@
-import { BorderRadius, Colors, FontSize, Spacing } from '@/constants/theme';
+import { BorderRadius, Colors, FontSize, Spacing, UserTheme } from '@/constants/theme';
 import { createReview } from '@/data/services/review.service';
 import React, { useState } from 'react';
 import {
@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
   },
   errorText: { fontSize: FontSize.xs, color: Colors.error, marginBottom: Spacing.xs },
   submitBtn: {
-    backgroundColor: Colors.primary,
+    backgroundColor: UserTheme.primary,
     borderRadius: BorderRadius.md,
     paddingVertical: Spacing.md,
     alignItems: 'center',

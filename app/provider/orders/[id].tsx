@@ -1,5 +1,5 @@
 import OrderStatusBadge from '@/components/shared/OrderStatusBadge';
-import { BorderRadius, Colors, FontSize, Spacing } from '@/constants/theme';
+import { BorderRadius, Colors, FontSize, Spacing, ProviderTheme } from '@/constants/theme';
 import { useAuthStore } from '@/stores/auth.store';
 import { useOrderStore } from '@/stores/order.store';
 import * as ImagePicker from 'expo-image-picker';
@@ -86,7 +86,7 @@ export default function ProviderOrderDetailScreen() {
   if (!order) {
     return (
       <View style={styles.center}>
-        <ActivityIndicator color={Colors.primary} />
+        <ActivityIndicator color={ProviderTheme.primary} />
       </View>
     );
   }
@@ -206,7 +206,7 @@ const styles = StyleSheet.create({
   },
   rowLabel: { fontSize: FontSize.sm, color: Colors.gray500 },
   rowValue: { fontSize: FontSize.sm, color: Colors.gray800, fontWeight: '500', flex: 1, textAlign: 'right' },
-  rowValueHighlight: { color: Colors.primary, fontWeight: '700' },
+  rowValueHighlight: { color: ProviderTheme.primary, fontWeight: '700' },
   sectionTitle: {
     fontSize: FontSize.lg,
     fontWeight: '700',
@@ -218,7 +218,7 @@ const styles = StyleSheet.create({
     width: 10,
     height: 10,
     borderRadius: 5,
-    backgroundColor: Colors.primary,
+    backgroundColor: ProviderTheme.primary,
     marginTop: 4,
     marginRight: Spacing.sm,
   },
@@ -232,7 +232,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: Spacing.sm,
   },
-  startBtn: { backgroundColor: Colors.primary },
+  startBtn: { backgroundColor: ProviderTheme.primary },
   completeBtn: { backgroundColor: Colors.success },
   btnDisabled: { opacity: 0.7 },
   actionBtnText: { color: Colors.white, fontSize: FontSize.md, fontWeight: '700' },

@@ -1,4 +1,4 @@
-import { BorderRadius, Colors, FontSize, Spacing } from '@/constants/theme';
+import { BorderRadius, Colors, FontSize, Spacing, ProviderTheme } from '@/constants/theme';
 import { getProviderByPhone } from '@/data/services/provider.service';
 import { getUserByPhone } from '@/data/services/user.service';
 import { useAuthStore } from '@/stores/auth.store';
@@ -106,7 +106,7 @@ export default function ProviderProfileScreen() {
   if (loading) {
     return (
       <View style={styles.center}>
-        <ActivityIndicator color={Colors.primary} />
+        <ActivityIndicator color={ProviderTheme.primary} />
       </View>
     );
   }
@@ -191,7 +191,7 @@ const styles = StyleSheet.create({
     width: 80,
     height: 80,
     borderRadius: 40,
-    backgroundColor: Colors.primary,
+    backgroundColor: ProviderTheme.primary,
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: Spacing.sm,

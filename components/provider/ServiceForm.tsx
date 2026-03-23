@@ -1,4 +1,4 @@
-import { BorderRadius, Colors, FontSize, Spacing } from '@/constants/theme';
+import { BorderRadius, Colors, FontSize, Spacing, ProviderTheme } from '@/constants/theme';
 import { PricingUnit, Service, ServiceType } from '@/data/types';
 import * as ImagePicker from 'expo-image-picker';
 import React, { useState } from 'react';
@@ -173,7 +173,7 @@ export default function ServiceForm({ initialValues, onSubmit }: ServiceFormProp
         <Switch
           value={isActive}
           onValueChange={setIsActive}
-          trackColor={{ true: Colors.primary, false: Colors.gray300 }}
+          trackColor={{ true: ProviderTheme.primary, false: Colors.gray300 }}
           thumbColor={Colors.white}
         />
       </View>
@@ -225,7 +225,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: Colors.white,
   },
-  typeBtnActive: { backgroundColor: Colors.primary, borderColor: Colors.primary },
+  typeBtnActive: { backgroundColor: ProviderTheme.primary, borderColor: ProviderTheme.primary },
   typeBtnText: { fontSize: FontSize.sm, color: Colors.gray600, fontWeight: '600' },
   typeBtnTextActive: { color: Colors.white },
   priceRow: { flexDirection: 'row', gap: Spacing.sm, alignItems: 'center' },
@@ -239,7 +239,7 @@ const styles = StyleSheet.create({
     borderColor: Colors.gray200,
     backgroundColor: Colors.white,
   },
-  unitBtnActive: { backgroundColor: Colors.primary, borderColor: Colors.primary },
+  unitBtnActive: { backgroundColor: ProviderTheme.primary, borderColor: ProviderTheme.primary },
   unitBtnText: { fontSize: FontSize.xs, color: Colors.gray600 },
   unitBtnTextActive: { color: Colors.white, fontWeight: '600' },
   photosRow: { flexDirection: 'row', flexWrap: 'wrap', gap: Spacing.sm, marginTop: Spacing.xs },
@@ -276,7 +276,7 @@ const styles = StyleSheet.create({
     marginTop: Spacing.sm,
   },
   submitBtn: {
-    backgroundColor: Colors.primary,
+    backgroundColor: ProviderTheme.primary,
     borderRadius: BorderRadius.md,
     paddingVertical: Spacing.md,
     alignItems: 'center',

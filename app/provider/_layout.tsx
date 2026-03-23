@@ -1,4 +1,4 @@
-import { Colors } from '@/constants/theme';
+import { Colors, ProviderTheme } from '@/constants/theme';
 import { useAuthStore } from '@/stores/auth.store';
 import { useNotificationStore } from '@/stores/notification.store';
 import { Ionicons } from '@expo/vector-icons';
@@ -19,7 +19,7 @@ export default function ProviderLayout() {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors.primary,
+        tabBarActiveTintColor: ProviderTheme.primary,
         tabBarInactiveTintColor: Colors.gray400,
         tabBarStyle: { backgroundColor: Colors.white },
         headerStyle: { backgroundColor: Colors.white },

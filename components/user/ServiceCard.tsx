@@ -1,4 +1,4 @@
-import { BorderRadius, Colors, FontSize, Spacing } from '@/constants/theme';
+import { BorderRadius, Colors, FontSize, Spacing, UserTheme } from '@/constants/theme';
 import { ServiceWithProvider } from '@/data/services/service.service';
 import { Ionicons } from '@expo/vector-icons';
 import React from 'react';
@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
     width: 44,
     height: 44,
     borderRadius: 22,
-    backgroundColor: Colors.primary,
+    backgroundColor: UserTheme.primary,
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: Spacing.sm,
@@ -111,12 +111,12 @@ const styles = StyleSheet.create({
     borderRadius: BorderRadius.sm,
   },
   badgeRegular: { backgroundColor: Colors.successLight },
-  badgeDeep: { backgroundColor: Colors.primaryLight },
+  badgeDeep: { backgroundColor: UserTheme.primaryLight },
   badgeText: { fontSize: FontSize.xs, fontWeight: '600', color: Colors.gray700 },
   price: {
     fontSize: FontSize.md,
     fontWeight: '700',
-    color: Colors.primary,
+    color: UserTheme.primary,
   },
   footer: {
     flexDirection: 'row',

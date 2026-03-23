@@ -1,6 +1,6 @@
 import TaskCard from '@/components/provider/TaskCard';
 import EmptyState from '@/components/shared/EmptyState';
-import { Colors, FontSize, Spacing } from '@/constants/theme';
+import { Colors, FontSize, Spacing, ProviderTheme } from '@/constants/theme';
 import { ServiceType } from '@/data/types';
 import { useOrderStore } from '@/stores/order.store';
 import { useRouter } from 'expo-router';
@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: Colors.gray200,
   },
-  chipActive: { backgroundColor: Colors.primary, borderColor: Colors.primary },
+  chipActive: { backgroundColor: ProviderTheme.primary, borderColor: ProviderTheme.primary },
   chipText: { fontSize: FontSize.sm, color: Colors.gray600 },
   chipTextActive: { color: Colors.white, fontWeight: '600' },
   areaInput: {

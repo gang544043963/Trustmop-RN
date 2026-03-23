@@ -1,4 +1,4 @@
-import { BorderRadius, Colors, FontSize, Spacing } from '@/constants/theme';
+import { BorderRadius, Colors, FontSize, Spacing, ProviderTheme } from '@/constants/theme';
 import { useAuthStore } from '@/stores/auth.store';
 import { useOrderStore } from '@/stores/order.store';
 import { useLocalSearchParams, useRouter } from 'expo-router';
@@ -34,7 +34,7 @@ export default function TaskDetailScreen() {
   if (!task) {
     return (
       <View style={styles.center}>
-        <ActivityIndicator color={Colors.primary} />
+        <ActivityIndicator color={ProviderTheme.primary} />
       </View>
     );
   }
@@ -132,9 +132,9 @@ const styles = StyleSheet.create({
   },
   rowLabel: { fontSize: FontSize.xs, color: Colors.gray400, marginBottom: 2 },
   rowValue: { fontSize: FontSize.md, color: Colors.gray800 },
-  rowValueHighlight: { color: Colors.primary, fontWeight: '700' },
+  rowValueHighlight: { color: ProviderTheme.primary, fontWeight: '700' },
   acceptBtn: {
-    backgroundColor: Colors.primary,
+    backgroundColor: ProviderTheme.primary,
     borderRadius: BorderRadius.md,
     paddingVertical: Spacing.md,
     alignItems: 'center',

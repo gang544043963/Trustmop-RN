@@ -1,5 +1,5 @@
 import EmptyState from '@/components/shared/EmptyState';
-import { BorderRadius, Colors, FontSize, Spacing } from '@/constants/theme';
+import { BorderRadius, Colors, FontSize, Spacing, ProviderTheme } from '@/constants/theme';
 import { Service } from '@/data/types';
 import { useAuthStore } from '@/stores/auth.store';
 import { useProviderStore } from '@/stores/provider.store';
@@ -58,7 +58,7 @@ export default function ProviderServicesScreen() {
         <Switch
           value={item.isActive}
           onValueChange={() => handleToggleActive(item)}
-          trackColor={{ true: Colors.primary, false: Colors.gray300 }}
+          trackColor={{ true: ProviderTheme.primary, false: Colors.gray300 }}
           thumbColor={Colors.white}
         />
       </View>
@@ -120,13 +120,13 @@ const styles = StyleSheet.create({
     marginBottom: Spacing.xs,
   },
   serviceType: { fontSize: FontSize.md, fontWeight: '700', color: Colors.gray800 },
-  price: { fontSize: FontSize.md, color: Colors.primary, fontWeight: '600', marginBottom: Spacing.xs },
+  price: { fontSize: FontSize.md, color: ProviderTheme.primary, fontWeight: '600', marginBottom: Spacing.xs },
   areas: { fontSize: FontSize.sm, color: Colors.gray500 },
   fab: {
     position: 'absolute',
     bottom: Spacing.lg,
     right: Spacing.lg,
-    backgroundColor: Colors.primary,
+    backgroundColor: ProviderTheme.primary,
     borderRadius: BorderRadius.full,
     paddingHorizontal: Spacing.lg,
     paddingVertical: Spacing.md,
