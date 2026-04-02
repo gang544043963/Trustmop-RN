@@ -1,5 +1,5 @@
 import { getItem, setItem } from './storage';
-import { Order, Provider, Review, Service, STORAGE_KEYS, Task, User } from './types';
+import { Notification, Order, Provider, Review, Service, STORAGE_KEYS, Task, User } from './types';
 
 const SEED_USERS: Record<string, User> = {
   'user-seed-1': {
@@ -200,17 +200,59 @@ const SEED_REVIEWS: Record<string, Review> = {
   },
 };
 
+const SEED_NOTIFICATIONS: Record<string, Notification> = {
+  'notif-seed-1': {
+    id: 'notif-seed-1',
+    recipientId: 'user-seed-1',
+    recipientType: 'user',
+    type: 'task_accepted',
+    title: 'Task Accepted',
+    body: 'Juan dela Cruz has accepted your regular cleaning task.',
+    isRead: false,
+    relatedOrderId: 'order-seed-1',
+    createdAt: new Date(Date.now() - 1000 * 60 * 10).toISOString(),
+  },
+  'notif-seed-2': {
+    id: 'notif-seed-2',
+    recipientId: 'user-seed-1',
+    recipientType: 'user',
+    type: 'order_pending_confirmation',
+    title: 'Service Completed',
+    body: 'Your provider has finished the job. Please confirm completion.',
+    isRead: false,
+    relatedOrderId: 'order-seed-1',
+    createdAt: new Date(Date.now() - 1000 * 60 * 5).toISOString(),
+  },
+  'notif-seed-3': {
+    id: 'notif-seed-3',
+    recipientId: 'user-seed-1',
+    recipientType: 'user',
+    type: 'task_unaccepted_reminder',
+    title: 'Task Still Open',
+    body: 'Your deep cleaning task has not been accepted yet. Consider adjusting your budget.',
+    isRead: false,
+    createdAt: new Date(Date.now() - 1000 * 60 * 2).toISOString(),
+  },
+};
+
 export async function runSeedIfNeeded(): Promise<void> {
   const seeded = await getItem<boolean>(STORAGE_KEYS.SEEDED);
-  if (seeded) return;
+  if (!seeded) {
+    await setItem(STORAGE_KEYS.USERS, SEED_USERS);
+    await setItem(STORAGE_KEYS.PROVIDERS, SEED_PROVIDERS);
+    await setItem(STORAGE_KEYS.SERVICES, SEED_SERVICES);
+    await setItem(STORAGE_KEYS.TASKS, SEED_TASKS);
+    await setItem(STORAGE_KEYS.ORDERS, SEED_ORDERS);
+    await setItem(STORAGE_KEYS.REVIEWS, SEED_REVIEWS);
+    await setItem('@cleaning/platform_config', { platformFeeRate: 0.10 });
+    await setItem(STORAGE_KEYS.SEEDED, true);
+  }
 
-  await setItem(STORAGE_KEYS.USERS, SEED_USERS);
-  await setItem(STORAGE_KEYS.PROVIDERS, SEED_PROVIDERS);
-  await setItem(STORAGE_KEYS.SERVICES, SEED_SERVICES);
-  await setItem(STORAGE_KEYS.TASKS, SEED_TASKS);
-  await setItem(STORAGE_KEYS.ORDERS, SEED_ORDERS);
-  await setItem(STORAGE_KEYS.REVIEWS, SEED_REVIEWS);
-  await setItem('@cleaning/platform_config', { platformFeeRate: 0.10 });
-
-  await setItem(STORAGE_KEYS.SEEDED, true);
+  // Always ensure seed notifications exist (re-runs safely on reload)
+  const existing = (await getItem<Record<string, Notification>>(STORAGE_KEYS.NOTIFICATIONS)) ?? {};
+  const hasSeedNotifs = Object.keys(existing).some((k) => k.startsWith('notif-seed-'));
+  if (!hasSeedNotifs) {
+    const merged = { ...existing, ...SEED_NOTIFICATIONS };
+    await setItem(STORAGE_KEYS.NOTIFICATIONS, merged);
+  }
 }
