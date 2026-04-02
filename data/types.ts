@@ -7,6 +7,7 @@ export interface AuthSession {
   activeIdentity: IdentityType;
   userId?: string;         // set if user account exists for this phone
   providerId?: string;     // set if provider account exists for this phone
+  token?: string;          // JWT — populated in dev/prod, empty in mock
 }
 
 // ─── User (C-side) ─────────────────────────────────────────────

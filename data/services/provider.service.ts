@@ -1,51 +1,11 @@
-import { getItem, setItem } from '../storage';
-import { Provider, STORAGE_KEYS } from '../types';
-import { delay } from './auth.service';
+import { APP_ENV } from '../config';
+import * as mock from './impl/provider.mock';
+import * as real from './impl/provider.real';
 
-export async function getProvider(id: string): Promise<Provider | null> {
-  await delay(100);
-  const providers = (await getItem<Record<string, Provider>>(STORAGE_KEYS.PROVIDERS)) ?? {};
-  return providers[id] ?? null;
-}
+const impl = APP_ENV === 'mock' ? mock : real;
 
-export async function getProviderByPhone(phone: string): Promise<Provider | null> {
-  await delay(100);
-  const providers = (await getItem<Record<string, Provider>>(STORAGE_KEYS.PROVIDERS)) ?? {};
-  return Object.values(providers).find((p) => p.phone === phone) ?? null;
-}
-
-export async function createProvider(
-  data: Omit<Provider, 'id' | 'createdAt' | 'averageRating' | 'totalReviews' | 'status'>
-): Promise<Provider> {
-  await delay(150);
-  const providers = (await getItem<Record<string, Provider>>(STORAGE_KEYS.PROVIDERS)) ?? {};
-  const provider: Provider = {
-    ...data,
-    id: 'provider-' + Date.now(),
-    status: 'verified',  // MVP: auto-verify on registration
-    averageRating: 0,
-    totalReviews: 0,
-    createdAt: new Date().toISOString(),
-  };
-  providers[provider.id] = provider;
-  await setItem(STORAGE_KEYS.PROVIDERS, providers);
-  return provider;
-}
-
-export async function updateProvider(
-  id: string,
-  partial: Partial<Omit<Provider, 'id'>>
-): Promise<Provider> {
-  await delay(150);
-  const providers = (await getItem<Record<string, Provider>>(STORAGE_KEYS.PROVIDERS)) ?? {};
-  if (!providers[id]) throw new Error(`Provider not found: ${id}`);
-  providers[id] = { ...providers[id], ...partial };
-  await setItem(STORAGE_KEYS.PROVIDERS, providers);
-  return providers[id];
-}
-
-export async function listProviders(): Promise<Provider[]> {
-  await delay(100);
-  const providers = (await getItem<Record<string, Provider>>(STORAGE_KEYS.PROVIDERS)) ?? {};
-  return Object.values(providers);
-}
+export const getProvider        = (...args: Parameters<typeof mock.getProvider>)        => impl.getProvider(...args);
+export const getProviderByPhone = (...args: Parameters<typeof mock.getProviderByPhone>) => impl.getProviderByPhone(...args);
+export const createProvider     = (...args: Parameters<typeof mock.createProvider>)     => impl.createProvider(...args);
+export const updateProvider     = (...args: Parameters<typeof mock.updateProvider>)     => impl.updateProvider(...args);
+export const listProviders      = (...args: Parameters<typeof mock.listProviders>)      => impl.listProviders(...args);
